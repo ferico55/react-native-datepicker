@@ -137,7 +137,7 @@ class DatePicker extends Component {
         }
       }
 
-      return now;
+      return null;
     }
 
     if (date instanceof Date) {
@@ -392,7 +392,7 @@ class DatePicker extends Component {
                   >
                     <View pointerEvents={this.state.allowPointerEvents ? 'auto' : 'none'}>
                       <DatePickerIOS
-                        date={this.state.date}
+                        date={this.state.date || new Date()}
                         mode={mode}
                         minimumDate={minDate && this.getDate(minDate)}
                         maximumDate={maxDate && this.getDate(maxDate)}
