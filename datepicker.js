@@ -58,6 +58,9 @@ class DatePicker extends Component {
 
   setModalVisible(visible) {
     const {height, duration} = this.props;
+    if (!this.state.date && visible) {
+      this.setState({date: this.getDate(new Date())});
+    }
 
     // slide animation
     if (visible) {
@@ -268,7 +271,7 @@ class DatePicker extends Component {
       // 选日期
       if (mode === 'date') {
         DatePickerAndroid.open({
-          date: this.state.date,
+          date: this.state.date || new Date(),
           minDate: minDate && this.getDate(minDate),
           maxDate: maxDate && this.getDate(maxDate),
           mode: androidMode
@@ -276,7 +279,7 @@ class DatePicker extends Component {
       } else if (mode === 'time') {
         // 选时间
 
-        let timeMoment = Moment(this.state.date);
+        let timeMoment = Moment(this.state.date || new Date());
 
         TimePickerAndroid.open({
           hour: timeMoment.hour(),
